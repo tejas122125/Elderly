@@ -14,6 +14,7 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import FileUploader from './FileUploader';
 
 
 const ElderRegisterForm = () => {
@@ -43,11 +44,11 @@ const ElderRegisterForm = () => {
                         name="firstname"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Firstname</FormLabel>
+                                <FormLabel  className='text-white' >Firstname</FormLabel>
                                 <FormControl>
                                     <Input placeholder="enter your first name" {...field}autoComplete='off' />
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage className='text-red-500' />
                             </FormItem>
                         )}
                     />
@@ -56,11 +57,11 @@ const ElderRegisterForm = () => {
                         name="lastname"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Lastname</FormLabel>
+                                <FormLabel  className='text-white' >Lastname</FormLabel>
                                 <FormControl>
                                     <Input placeholder="enter your lastname" {...field} autoComplete='off'/>
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage className='text-red-500' />
                             </FormItem>
                         )}
                     />
@@ -69,11 +70,11 @@ const ElderRegisterForm = () => {
                         name="age"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Age</FormLabel>
+                                <FormLabel  className='text-white' >Age</FormLabel>
                                 <FormControl>
                                     <Input placeholder="enter your age" {...field} autoComplete='off' type='number' />
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage className='text-red-500'/>
                             </FormItem>
                         )}
                     />
@@ -82,14 +83,14 @@ const ElderRegisterForm = () => {
                     name="imagefile"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className="shad-form_label">Add Photos</FormLabel>
+                            <FormLabel className='text-white' >Add Photos</FormLabel>
                             <FormControl>
                                 <FileUploader
                                     fieldChange={field.onChange}
-                                    mediaUrl={post?.imageUrl}
-                                />
+                                  
+                               />
                             </FormControl>
-                            <FormMessage className="shad-form_message" />
+                            <FormMessage className='text-red-500' />
                         </FormItem>
                     )}
                 />

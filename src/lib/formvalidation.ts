@@ -6,4 +6,6 @@ export const ElderForm = z.object({
     age:z.number().min(30,{message:"Too Young Manage On your own"})   .max(200,{message:"Guiness Book Of World Record"}),
     address:z.string().min(1,{message:"Too Short Address "}).max(2200,{message:"enter a valid Address"}),
     imagefile:z.custom<File[]>(),
+    pdffile:z.custom<File[]>(),
+
   });
