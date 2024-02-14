@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import * as maptilersdk from '@maptiler/sdk';
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import 'leaflet-geometryutil';
-import io from 'socket.io-client';
+import {io} from 'socket.io-client';
 
 const MapElder = () => {
   let currentzoomlevel = 19.3;
@@ -106,13 +106,13 @@ const MapElder = () => {
           }
           const jsonstring = JSON.stringify(elderlocation)
           socket.emit('joinRoom', 'room1');
-          socket.emit('leaveRoom', 'room1');
+          // socket.emit('leaveRoom', 'room1');
           socket.emit('elderMessage', 'room1', jsonstring);
       
           console.log(distance)
         },
         error => {
-          console.error('Error watching user location:', error);
+          console.log('Error watching user location:', error);
         }, {
         enableHighAccuracy: true,
         maximumAge: 10000, // 10 seconds
@@ -240,7 +240,7 @@ const MapElder = () => {
 
   return (
     <div className="map-wrap">
-      <script src='/socket.io/socket.io.js'></script>
+      {/* <script src='/socket.io/socket.io.js'></script> */}
       {!loaded && <div className='bg-green-500'> monu jinda bad</div>}
       <div id='mapdiv' className="h-screen w-screen
          relative " />
