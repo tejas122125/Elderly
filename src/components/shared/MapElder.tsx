@@ -18,13 +18,16 @@ const MapElder = () => {
 
   // checking the elders position location 
   const checkEldersposition = (distance: number): Number => {
-    if (distance / 100000 > 400) {
+    if (distance / 100000 < 400) {
+//green
       return 0;
     }
-    else if (distance > 400 && distance < 700) {
+    else if (distance/1000000 > 400 && distance < 700) {
+      //yellow
       return 1;
     }
     else {
+      //red
       return 3;
     }
   }

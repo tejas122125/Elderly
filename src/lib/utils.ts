@@ -8,12 +8,4 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 
-export function websocketConnection(){
-  const ws = new WebSocket('ws://localhost:8080')
-  return ws
-}
-
-export function websocketServer(){
-  const wss = new WebSocket.Server({port:5173})
-  return wss
-}
+export const convertFileToUrl = (file: File) => URL.createObjectURL(file);

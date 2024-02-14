@@ -15,6 +15,8 @@ const io = new Server(server,{
 })
 
 app.use(cors())
+
+
 app.get("/test",(req,res)=>{
   res.send(JSON.stringify("hello monu bhai"))
 })
