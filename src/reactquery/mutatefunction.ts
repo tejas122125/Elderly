@@ -3,12 +3,12 @@ import { useMutation } from 'react-query';
 
 const [mutate, { isLoading, isError, isSuccess }] = useMutation(uploadimage);
 
-export const uploadImageMutation = () =>{
+export const uploadImageMutation = () => {
     return useMutation({
-        mutationFn : (file:File) =>{
-            return signinAccount(user)
+        mutationFn: (file: File) => {
+            return uploadImage(file)
         }
     }
-        
+
     )
-    }
+}
