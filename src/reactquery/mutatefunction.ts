@@ -13,3 +13,12 @@ export const uploadImageMutation = () => {
 
 
 // uploading elders detatils
+
+export const useCreateUserAccountMutation = () =>{
+    return useMutation({
+        mutationFn : (user) =>{
+            return createUserAccount(user)
+        }
+    }
+    )
+}
