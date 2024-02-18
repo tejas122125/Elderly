@@ -17,3 +17,25 @@ try {
 
 
 }
+
+
+
+export const saveuserToDb = async (
+    user: {
+        accountId: string,
+        name: string,
+        email: string,
+        username: string,
+        imageUrl: URL
+    }
+) => {
+
+    try {
+        const newUser = await databases.createDocument(appwriteConfig.databaseId,"658da7c34f70d1d51ef6", ID.unique(),user)
+        return newUser
+    }
+    catch (error) {
+        console.log("error in api.ts file in add user to db function")
+    }
+
+}
