@@ -1,7 +1,7 @@
 // storing the image files in appwrite
 
 import { ID } from "appwrite";
-import { storage } from "./config";
+import { databases, storage } from "./config";
 
 export const uploadImage = async (file:File)=>{
 try {
