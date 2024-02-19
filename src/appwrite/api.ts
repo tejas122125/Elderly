@@ -15,7 +15,7 @@ try {
     console.log("error while uploading images to appwrite")
 }
 
-export function getFilePreview(fileId: string) {
+export const  getFilePreview = (fileId: string)=> {
     try {
       const fileUrl = storage.getFilePreview(
         appwrite.storageId,
