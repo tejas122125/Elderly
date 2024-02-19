@@ -18,7 +18,7 @@ try {
 export function getFilePreview(fileId: string) {
     try {
       const fileUrl = storage.getFilePreview(
-        appwriteConfig.storageId,
+        appwrite.storageId,
         fileId,
         2000,
         2000,
