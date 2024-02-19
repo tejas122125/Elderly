@@ -1,7 +1,7 @@
 // storing the image files in appwrite
 
 import { ID } from "appwrite";
-import { databases, storage } from "./config";
+import { account, avatars, databases, storage } from "./config";
 
 export const uploadImage = async (file:File)=>{
 try {
@@ -20,18 +20,11 @@ try {
 
 export async function createUserAccount(user) {
     try {
-        const newAccount = await account.create(
-            ID.unique(),
-            user.email,
-            user.password,
-            user.name,
-        )
-
         const avatarsUrl = avatars.getInitials(user.name)
         const newUser = await saveuserToDb({
-            accountId: newAccount.$id,
-            name: newAccount.name,
-            email: newAccount.email,
+            accountId: user.$id,
+            name: user.name,
+            email: user.email,
             username: user.username,
             imageUrl: avatarsUrl,
 
