@@ -14,7 +14,7 @@ try {
 } catch (error) {
     console.log("error while uploading images to appwrite")
 }
-
+}
 export const  getFilePreview = (fileId: string)=> {
     try {
       const fileUrl = storage.getFilePreview(
@@ -35,9 +35,9 @@ export const  getFilePreview = (fileId: string)=> {
   }
   
 
-}
 
-export async function createUserAccount(user) {
+
+export const createUserAccount = async (user)=> {
     try {
         const avatarsUrl = avatars.getInitials(user.name)
         const newUser = await saveuserToDb({
