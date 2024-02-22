@@ -1,12 +1,12 @@
 // storing the image files in appwrite
-
+import 'dotenv/config'
 import { ID } from "appwrite";
 import { account, avatars, databases, storage } from "./config";
 
 export const uploadImage = async (file:File)=>{
 try {
     const response = await storage.createFile(
-        '65ce07915bbda0153d57',
+        process.env.REACT_APP_APPWRITE_STORAGEID!,
         ID.unique(),
         file
     );
@@ -40,7 +40,7 @@ export const  getFilePreview = (fileId: string)=> {
 export const createUserAccount = async (user)=> {
     try {
         const avatarsUrl = avatars.getInitials(user.name)
-        const newUser = await saveuserToDb({
+        const newUser = await saveelderToDb({
             accountId: user.$id,
             name: user.name,
             email: user.email,
@@ -60,22 +60,23 @@ export const createUserAccount = async (user)=> {
 
 }
 
-export const saveuserToDb = async (
+export const saveelderToDb = async (
     user: {
-        accountId: string,
-        name: string,
-        email: string,
-        username: string,
-        imageUrl: URL
+        firstname: string,
+        lastname: string,
+        address: string,
+        city: string,
+        state: string,
+        imageurl: URL
     }
 ) => {
 
     try {
-        const newUser = await databases.createDocument(appwritedatabaseId,"658da7c34f70d1d51ef6", ID.unique(),user)
-        return newUser
+        const newuser = await databases.createDocument(process.env.REACT_APP_APPWRITE_ELDERDATABASEID!,process.env.REACT_APP_APPWRITE_ELDERUSERCOLLECTIONID!, ID.unique(),user)
+        return newuser
     }
     catch (error) {
-        console.log("error in api.ts file in add user to db function")
+        console.log("error in api.ts file in add elder  user to db function")
     }
 
 }
