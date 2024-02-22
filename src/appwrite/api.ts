@@ -37,17 +37,16 @@ export const  getFilePreview = (fileId: string)=> {
 
 
 
-export const createUserAccount = async (user)=> {
+export const createElderUser = async (user)=> {
     try {
         const avatarsUrl = avatars.getInitials(user.name)
         const newUser = await saveelderToDb({
-            accountId: user.$id,
-            name: user.name,
-            email: user.email,
-            username: user.username,
-            imageUrl: avatarsUrl,
-
-
+            firstname:user.firstname,
+            lastname:user.lastname,
+            address : user.address,
+            city:user.city,
+            state:user.state,
+            imageurl:user.imageurl
         })
 
         return newUser;
