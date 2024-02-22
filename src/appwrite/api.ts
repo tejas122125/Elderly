@@ -2,6 +2,7 @@
 import 'dotenv/config'
 import { ID } from "appwrite";
 import { account, avatars, databases, storage } from "./config";
+import { elderUser } from '@/type';
 
 export const uploadImage = async (file:File)=>{
 try {
@@ -18,7 +19,7 @@ try {
 export const  getFilePreview = (fileId: string)=> {
     try {
       const fileUrl = storage.getFilePreview(
-        appwrite.storageId,
+        process.env.REACT_APP_APPWRITE_STORAGEID!,
         fileId,
         2000,
         2000,
@@ -37,9 +38,9 @@ export const  getFilePreview = (fileId: string)=> {
 
 
 
-export const createElderUser = async (user)=> {
+export const createElderUser = async (user:elderUser)=> {
     try {
-        const avatarsUrl = avatars.getInitials(user.name)
+      
         const newUser = await saveelderToDb({
             firstname:user.firstname,
             lastname:user.lastname,

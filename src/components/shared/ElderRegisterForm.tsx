@@ -11,11 +11,7 @@ import FileUploader from './FileUploader';
 // import PdfFileUploader from './PdfFileUploader';
 import { useQuery } from 'react-query';
 import { fetchCoordinates } from '@/api/locationApi';
-type placetype = {
-    place :string,
-    city:string,
-    state:string,
-}
+
 
 const ElderRegisterForm = () => {
 
