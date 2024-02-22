@@ -11,8 +11,9 @@ import FileUploader from './FileUploader';
 // import PdfFileUploader from './PdfFileUploader';
 import { useQuery } from 'react-query';
 import { fetchCoordinates } from '@/api/locationApi';
-import { placetype } from '@/type';
-import { useFetchCoordinate } from '@/reactquery/mutatefunction';
+import { elderUser, placetype } from '@/type';
+import { useCreateElder } from '@/reactquery/mutatefunction';
+import { getFilePreview, uploadImage } from '@/appwrite/api';
 
 
 const ElderRegisterForm = () => {
@@ -31,8 +32,25 @@ const ElderRegisterForm = () => {
     const handlesubmit = async (value: z.infer<typeof ElderForm>) => {
         const addressParam:placetype  = {place:value.place,city:value.city,state:value.state}
 
-        const { data, isLoading, isError } = useFetchCoordinate(addressParam)
-        
+        const { data, isLoading, isError } =useQuery('fetchcoordinates',()=>{
+            return fetchCoordinates(value.place,value.state,value.city)
+        } )
+        const fileid = await uploadImage(value.imagefile[0])
+        const imageurl = getFilePreview(fileid?.$id!)
+
+        const user:elderUser = {
+            firstname:value.firstname,
+            lastname : value.lastname,
+            address :value.place,
+            longitude : data.longitude,
+            latitude:data.latitude,
+            city : value.city,
+            state : value.state,
+            imageurl : imageurl!
+        }
+        const { mutateAsync: createElderUser, isSuccess: isLoadingCreate } = useCreateElder();
+        createElderUser(user)
+
         console.log("submitted")
     }
 

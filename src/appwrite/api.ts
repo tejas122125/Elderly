@@ -1,25 +1,26 @@
 // storing the image files in appwrite
-import 'dotenv/config'
+// import 'dotenv/config'
 import { ID } from "appwrite";
 import { account, avatars, databases, storage } from "./config";
 import { elderUser } from '@/type';
 
-export const uploadImage = async (file:File)=>{
-try {
-    const response = await storage.createFile(
-        process.env.REACT_APP_APPWRITE_STORAGEID!,
+export async function  uploadImage(file: File) {
+    try {
+      const uploadedFile = await storage.createFile(
+        import.meta.env.VITE_APPWRITE_STORAGEID!,
         ID.unique(),
         file
-    );
-    return response
-} catch (error) {
-    console.log("error while uploading images to appwrite")
-}
-}
+      );
+  
+      return uploadedFile;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 export const  getFilePreview = (fileId: string)=> {
     try {
       const fileUrl = storage.getFilePreview(
-        process.env.REACT_APP_APPWRITE_STORAGEID!,
+        import.meta.env.VITE_APPWRITE_STORAGEID!,
         fileId,
         2000,
         2000,
