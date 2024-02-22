@@ -11,6 +11,8 @@ import FileUploader from './FileUploader';
 // import PdfFileUploader from './PdfFileUploader';
 import { useQuery } from 'react-query';
 import { fetchCoordinates } from '@/api/locationApi';
+import { placetype } from '@/type';
+import { useFetchCoordinate } from '@/reactquery/mutatefunction';
 
 
 const ElderRegisterForm = () => {
@@ -29,9 +31,8 @@ const ElderRegisterForm = () => {
     const handlesubmit = async (value: z.infer<typeof ElderForm>) => {
         const addressParam:placetype  = {place:value.place,city:value.city,state:value.state}
 
-        const { data, isLoading, isError } = useQuery('fetchcoordinates',()=>{fetchCoordinates(value.place,value.state,value.city)} );
-        // we need to submit the values in appwrite using usemutate query
-
+        const { data, isLoading, isError } = useFetchCoordinate(addressParam)
+        
         console.log("submitted")
     }
 

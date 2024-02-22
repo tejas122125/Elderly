@@ -1,5 +1,7 @@
+import { fetchCoordinates } from '@/api/locationApi';
 import { uploadImage } from '@/appwrite/api';
-import { useMutation } from 'react-query';
+import { placetype } from '@/type';
+import { useMutation, useQuery } from 'react-query';
 
 export const uploadImageMutation = () => {
     return useMutation({
@@ -21,4 +23,13 @@ export const useCreateUserAccountMutation = () =>{
         }
     }
     )
+}
+
+
+export const useFetchCoordinate = ({place,state,city}:placetype)=>{
+    // return useQuery({queryKey:'fetchcoordinates',queryfn:()=>{fetchCoordinates(place,state,city)} });
+    return useQuery({
+        queryKey:"fetchcoordinates" ,
+        queryFn: ()=>{fetchCoordinates(place,state,city)} ,
+      });
 }
