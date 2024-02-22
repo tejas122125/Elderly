@@ -1,3 +1,5 @@
+import 'dotenv/config'
+
 type placetype = {
     place :string,
     city:string,
@@ -6,7 +8,7 @@ type placetype = {
 
 
 export async function fetchCoordinates(place:string,state:string,city:string) {
-    const response = await fetch(`https://api.geoapify.com/v1/geocode/search?street=${place}&city=${city}&state=${state}&country=India&lang=en&limit=5&format=json&apiKey=da99992ada14459aa90df25590da91c2`);
+    const response = await fetch(`https://api.geoapify.com/v1/geocode/search?street=${place}&city=${city}&state=${state}&country=India&lang=en&limit=5&format=json&apiKey={process.env.REACT_APP_GEOAPIFY_API}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
